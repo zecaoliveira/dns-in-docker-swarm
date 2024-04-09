@@ -1,0 +1,75 @@
+# Command: docker stack deploy --compose-file=docker-compose.yaml dns
+version: '3'
+
+networks:
+  overlay_net:
+    driver: overlay
+    attachable: true
+
+services:
+  pihole:
+    image: pihole/pihole:latest # remember to change this if you're using rpi
+    networks:
+      - overlay_net
+    #deploy:
+    #  mode: global
+    #  placement:
+    #    constraints: [node.platform.os == linux]
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "10085:80/tcp" # Access via http://pihole.khonshu.net:10085/admin/login.php (example).
+      #- "10443:443/tcp"
+    environment:
+      TZ: 'America/Maceio'
+      # Reset Password 
+      # Set the Web Interface password. Password can be entered as an option (e.g: pihole -a -p secretpassword), 
+      # or separately as to not display on the screen (e.g: pihole -a -p).
+      # site: https://docs.pi-hole.net/core/pihole-command/?h=password#password
+      #WEBPASSWORD: 'password'
+      # Source Optional variables Docker - PiHole:
+      # This IP address and port are from Unbound on one of the cluster nodes. It is used by PiHole as the upstream DNS.
+      PIHOLE_DNS_: 172.16.0.221#5053;172.16.0.222#5053;127.0.0.1#5053
+      #DNSSEC: true
+    #dns:
+    #  - 127.0.0.1
+    #  - 1.1.1.1 # Quad9
+    #  - 8.8.8.8 # CloudFlare
+    volumes:
+      - "dns-homelab:/data"
+    #  - './etc-pihole:/etc/pihole' # Oficial PiHole
+    #  - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    #labels:
+    #  - "traefik.enable=true"
+    #  - "traefik.http.routers.pihole.entrypoints=http"
+    #  - "traefik.http.routers.pihole.rule=Host(`pihole.khonshu.net`)"
+    #  - "traefik.http.middlewares.pihole-https-redirect.redirectscheme.scheme=https"
+    #  - "traefik.http.routers.pihole.middlewares=pihole-https-redirect"
+    #  - "traefik.http.routers.pihole-secure.entrypoints=https"
+    #  - "traefik.http.routers.pihole-secure.rule=Host(`pihole.khonshu.net`)"
+    #  - "traefik.http.routers.pihole-secure.tls=true"
+    #  - "traefik.http.routers.pihole-secure.service=pihole"
+    #  - "traefik.http.services.pihole.loadbalancer.server.port=80"
+    #  - "traefik.docker.network=proxy"
+  unbound:
+    image: mvance/unbound:latest
+    volumes:
+        - "dns-homelab:/data"
+    deploy: 
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+    ports:
+        - "5053:53/tcp" # expose a different port (5053) so you can use it directly
+        - "5053:53/udp"
+    networks:
+      - overlay_net
+          #ipv4_address: 172.29.0.11 # <-- This IP address and port are from Unbound in one of the . It is used by PiHole as the upstream DNS. (Docker Compose).
+volumes:
+  dns-homelab:
+    #external: true
+  #etc-dnsmasqd:
+  #  external: true
+  #etc-unbound:
+  #  external: true
