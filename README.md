@@ -26,6 +26,33 @@ Wiki: https://github.com/zecaoliveira/dns-in-docker-swarm/wiki
 - Explore o código: aprenda na prática como implementar soluções de rede segura e escalável com Docker Swarm.
 - Contribua para o projeto: compartilhe seu conhecimento e ajude a comunidade a crescer.
 
+Vamos ao que interessa: comandos de implementação.
+
+1 - Criar um volume para armazenar os arquivos de configuração do Pi-Hole e do Unbound e adicionar ao script YML:
+```
+$ docker volume create dns-homelab
+```
+2 - Implementar (deploy) as configurações do script YML usando o comando abaixo:
+```
+$ docker stack deploy --compose-file=docker-compose.yaml dns
+```
+3 - Para verificar se está tudo OK:
+
+> Observação: o intuito é aprender os métodos de controle e troubleshooting através da CLI. Fique a vontade para usar o Portainer por exemplo.
+> Link: https://docs.portainer.io/start/install-ce/server/swarm/linux
+
+3.1 - Serviços:
+```
+$ docker service ls
+```
+3.2 - Identificar em qual nó o serviço está sendo executado naquele momento
+```
+$ docker service ps <nome do serviço>
+```
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/7025fa0f-2928-47a1-989a-ce12e9e566d0)
+
+
+
 ### Observações importantes:
 
 Este projeto serve como base para implementações customizadas. Adapte-o de acordo com suas necessidades específicas.
@@ -39,6 +66,7 @@ Junte-se à comunidade e vamos construir soluções de rede inovadoras e eficien
 Links:
 
 - https://docs.pi-hole.net/guides/dns/unbound/
+- https://unbound.docs.nlnetlabs.nl/en/latest/
 - https://docs.github.com/pt/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository
 - https://opensource.guide/pt/legal/#:~:text=Se%20voc%C3%AA%20est%C3%A1%20iniciando%20do,o%20aviso%20de%20direitos%20autorais.
 - https://github.com/JamesTurland/JimsGarage/tree/main/Unbound
