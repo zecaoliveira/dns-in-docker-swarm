@@ -3,6 +3,8 @@
 
 Este projeto visa auxiliar na implementação de soluções de rede seguras, confiáveis e escaláveis com infraestrutura containerizada, utilizando Proxmox, Ubuntu Cloud-Image, Docker, Docker Swarm, Terraform, Ansible, PfSense, Pi-Hole e Unbound.
 
+Wiki: https://github.com/zecaoliveira/dns-in-docker-swarm/wiki
+
 ### O que você encontrará aqui:
 
 - Configurações de redes overlay para containers Docker: Garanta a comunicação segura e eficiente entre seus containers, isolando-os em redes virtuais privadas.
