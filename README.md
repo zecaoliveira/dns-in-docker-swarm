@@ -1,7 +1,7 @@
 
 # Seja bem-vindo ao repositório DNS em Docker Swarm!
 
-Este projeto visa auxiliar na implementação de soluções de rede seguras, confiáveis e escaláveis com infraestrutura containerizada, utilizando Proxmox, Ubuntu Cloud-Image, Docker, Docker Swarm, Terraform, Ansible, PfSense, Pi-Hole e Unbound.
+Este projeto visa auxiliar na implementação de soluções de rede seguras, confiáveis e escaláveis com infraestrutura containerizada, utilizando Proxmox, Ubuntu Cloud-Image, Docker Swarm, Terraform, Ansible, PfSense, Pi-Hole e Unbound.
 
 Wiki: https://github.com/zecaoliveira/dns-in-docker-swarm/wiki
 
@@ -35,3 +35,13 @@ Desenvolva suas habilidades em DevOps e conquiste as melhores oportunidades no m
 Junte-se à comunidade e vamos construir soluções de rede inovadoras e eficientes juntos!
 
 ### Crédito e Referências:
+
+Links:
+
+- https://docs.pi-hole.net/guides/dns/unbound/
+- https://docs.github.com/pt/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository
+- https://opensource.guide/pt/legal/#:~:text=Se%20voc%C3%AA%20est%C3%A1%20iniciando%20do,o%20aviso%20de%20direitos%20autorais.
+- https://github.com/JamesTurland/JimsGarage/tree/main/Unbound
+- https://github.com/JamesTurland/JimsGarage/tree/main/Terraform
+- https://docs.docker.com/engine/swarm/
+- https://cloud-images.ubuntu.com/noble/current/
