@@ -1,14 +1,50 @@
-## Docker Swarm DNS: Gerenciamento de DNS Simplificado e Seguro em Swarm
-### Introdução
+# DNS em Docker Swarm: soluções de rede, segurança e alta disponibilidade usando Infraestrutura como Código (IaC)
 
-Este repositório oferece uma solução completa para gerenciamento de DNS em clusters Docker Swarm, simplificando a configuração e a segurança da resolução de nomes para seus serviços.
+### Desenvolvido por: José Oliveira (https://www.linkedin.com/in/joliveirajr/)
 
-Como profissional especialista em redes de computadores e segurança da informação é comum ser acionado para contribuir com o advento de uma nova solução para o mercado.
+## Resumo:
 
-As áreas de negócio e marketing atuam na detecção de tendências e oportunidades para a manutenção do diferencial e competitividade da empresa no seu ramo de atuação.
+### Este projeto demonstra minha experiência prática em DevOps, com ênfase em:
 
-Por isso estou incrementando ao meu portfólio de especialista em redes e segurança, no ãmbito do mercado financeiro, a cultura DevOps / DevSecOps e Cloud Security.
+- Redes e Segurança em Docker: Implementação de redes seguras e confiáveis para containers Docker, utilizando técnicas como redes overlay, firewalls e políticas de acesso.
+- Volumes e Segurança: Configuração de volumes persistentes e seguros para containers Docker, garantindo a integridade e a disponibilidade dos dados.
+- Alta Disponibilidade com Docker Swarm: Criação de clusters Swarm resilientes e escaláveis para garantir a alta disponibilidade de serviços críticos.
 
-### Por que DNS em container?
+### Aplicações:
 
-Com a pandemia de COVID-19 o trabalho remoto se tornou uma necessidade em prol da sobrevivência da nossa espécie.
+- Servidores DNS: Pi-Hole / Unbound / Cloudflare
+- Balanceamento de carga (Load Balancer): NGINX / Traefik / Cloudflare
+- Proxy reverso: NGINX / Traefik / Cloudflare
+- Monitoramento de rede: Prometheus / Grafana / SIEM
+- Segurança de rede: controle de acesso e autorização na conexão com os volumes em Docker.
+  
+### Benefícios:
+
+- Agilidade: Implementação rápida e escalável de serviços de rede.
+- Segurança: Proteção robusta contra ataques cibernéticos.
+- Alta Disponibilidade: Minimização de tempo de inatividade e perda de dados.
+- Eficiência: Otimização do uso de recursos de infraestrutura.
+
+### Contratação de Suporte:
+
+Para garantir o máximo de desempenho e segurança da sua solução, considere contratar o suporte pago de empresas como a PiHole. O suporte especializado oferece:
+
+- Resolução rápida de problemas
+- Atualizações regulares de segurança
+- Melhorias contínuas no desempenho
+- Orientação para otimização da infraestrutura
+
+### Contribuições para o desenvolvimento do seu perfil profissional através dos laboratórios usando a cultura DevOps:
+
+- Demonstrar expertise em tecnologias essenciais para o mercado de DevOps, como Docker, Swarm e redes containerizadas.
+- Evidencia habilidades práticas na implementação de soluções de rede segura e escalável.
+- Aponta proatividade na busca por aprimoramento contínuo através do suporte especializado.
+  
+### Comece agora:
+
+Clone o repositório e explore o código para aprofundar seus conhecimentos em DevOps: https://github.com/zecaoliveira/dns-in-docker-swarm
+
+### Observações:
+
+Este projeto serve como base para implementações customizadas. Adapte-o de acordo com suas necessidades específicas.
+Mantenha-se atualizado sobre as melhores práticas de segurança em Docker e redes containerizadas.
