@@ -35,35 +35,62 @@ $ docker volume create pwu_data
 ![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/3b8b3df0-4c26-46c2-9a5b-6c260c5e7051)
 
 2 - Contrua a sua image Docker: https://github.com/zecaoliveira/dns-in-docker-swarm/blob/main/Dockerfile
+
+> Mérito do ótimo vídeo do Rob with Tech: https://www.youtube.com/watch?v=IqsPH6oXy8c&t=16s
+> Repositório: https://github.com/robwithtech/homelab
+
 ```
 $ docker build -t piholewunbound:v3 .
 ```
-3 - Ajustar o script YAML com as informações da sua infraestrutura:
+3 - Ajustar o script YAML com as informações da sua infraestrutura: https://github.com/zecaoliveira/dns-in-docker-swarm/blob/main/docker-compose.yaml
 
-```
-
-```
-
-3 - Implementar (deploy) as configurações do script YML usando o comando abaixo:
+4 - Implementar (deploy) as configurações do script YAML usando o comando abaixo:
 ```
 $ docker stack deploy --compose-file=docker-compose.yaml dns
 ```
-3 - Para verificar se está tudo OK:
+4 - Para verificar se está tudo OK:
 
 > Observação: o intuito é aprender os métodos de controle e troubleshooting através da CLI. Fique a vontade para usar o Portainer por exemplo.
 > Link: https://docs.portainer.io/start/install-ce/server/swarm/linux
 
-3.1 - Serviços:
+4.1 - Serviços:
 ```
 $ docker service ls
 ```
-3.2 - Identificar em qual nó o serviço está sendo executado naquele momento
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/84203ab6-4e32-4ebb-8849-ef066e6797ef)
+
+4.2 - Identificar em qual nó o serviço está sendo executado naquele momento
 ```
 $ docker service ps <nome do serviço>
 ```
-![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/7025fa0f-2928-47a1-989a-ce12e9e566d0)
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/1146229f-f9a0-4b83-8d66-e02336d6f5ec)
 
+4.3 - Acessar o bash do container:
+```
+$ docker exec -it <nome do container> bash
+```
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/3ba30924-080f-4c57-b754-fd4823871a39)
 
+4.4 - Teste de conexão e resolução de nomes usando o Unbound:
+
+```
+root@piholewunbound:/# dig www.globo.com @127.0.0.1 -p 5335
+```
+
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/a2b60c72-1217-4630-b36c-f7391a7de071)
+
+4.5 - Teste usando a configuração do WildCard no Pi-Hole:
+> 
+```
+root@piholewunbound:/# dig test.jager.net @127.0.0.1 
+```
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/e6f7a79a-1996-411c-80ec-b3abeb7d46cd)
+
+Aqui eu concluo este tutorial no qual eu pude praticar temas como:
+
+- Alta disponibilidade para servidores: ao usar um cluster Swarm em que eu não preciso me preocupar em qual nó o serviço está funcionando. Após o deploy o cluster assume toda a parte de alta disponibilidade e oferta do serviço / aplicação.
+- Segurança dos volumes: colocando os dados para serem armazenados em volume gerenciado eu garanto a segurança uma vez que somente o usuário root tem acesso a pasta volumes em /var/lib/docker. Outra facilidade é que ao executar o comando de criação de volumes no Docker ele é replicado para todo o cluster automaticamente.
+- Alta disponibilidade de rede: usando a rede do tipo Overlay. Uma vez configurado todo o tráfego é gerenciado pela mesmo, não importando em qual nó está o serviço / aplicação. O ganho de tempo de não ter que anotar IP's é imensurável.
 
 ### Observações importantes:
 
@@ -78,6 +105,7 @@ Junte-se à comunidade e vamos construir soluções de rede inovadoras e eficien
 Links:
 
 - https://docs.pi-hole.net/guides/dns/unbound/
+- https://www.cherryservers.com/blog/docker-build-command
 - https://unbound.docs.nlnetlabs.nl/en/latest/
 - https://docs.github.com/pt/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository
 - https://opensource.guide/pt/legal/#:~:text=Se%20voc%C3%AA%20est%C3%A1%20iniciando%20do,o%20aviso%20de%20direitos%20autorais.
@@ -85,3 +113,4 @@ Links:
 - https://github.com/JamesTurland/JimsGarage/tree/main/Terraform
 - https://docs.docker.com/engine/swarm/
 - https://cloud-images.ubuntu.com/noble/current/
+- https://github.com/robwithtech/homelab
