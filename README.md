@@ -30,8 +30,15 @@ Vamos ao que interessa: comandos de implementação.
 
 1 - Criar um volume para armazenar os arquivos de configuração do Pi-Hole e do Unbound e adicionar ao script YML:
 ```
-$ docker volume create dns-homelab
+$ docker volume create pwu_data
 ```
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/3b8b3df0-4c26-46c2-9a5b-6c260c5e7051)
+
+2 - Contrua a sua image Docker:
+```
+$ docker build -t piholewunbound:v3 .
+```
+
 2 - Implementar (deploy) as configurações do script YML usando o comando abaixo:
 ```
 $ docker stack deploy --compose-file=docker-compose.yaml dns
