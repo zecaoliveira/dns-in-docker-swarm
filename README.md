@@ -85,6 +85,21 @@ root@piholewunbound:/# dig test.jager.net @127.0.0.1
 ```
 ![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/e6f7a79a-1996-411c-80ec-b3abeb7d46cd)
 
+5 - Teste usando os 3 nós:
+
+- Node 01:
+
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/9fda0e63-9b87-4d2a-985f-9fd015be8d01)
+
+- Node 02:
+
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/1fbc9e11-3a0f-4b86-90e2-a8ca7967160d)
+
+- Node 03:
+
+![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/273c2353-ab9b-499e-81cb-9449f3c50b9c)
+
+
 ## Breve descrição dos recursos usados aqui:
 
 ### Overlay network driver
