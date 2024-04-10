@@ -72,7 +72,6 @@ $ docker exec -it <nome do container> bash
 ![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/3ba30924-080f-4c57-b754-fd4823871a39)
 
 4.4 - Teste de conexão e resolução de nomes usando o Unbound:
-
 ```
 root@piholewunbound:/# dig www.globo.com @127.0.0.1 -p 5335
 ```
@@ -80,7 +79,7 @@ root@piholewunbound:/# dig www.globo.com @127.0.0.1 -p 5335
 ![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/a2b60c72-1217-4630-b36c-f7391a7de071)
 
 4.5 - Teste usando a configuração do WildCard no Pi-Hole:
-> 
+> Mérito do Ricardo Fuhrman, site: https://blog.ricardof.dev/configurando-dominio-wildcard-pihole/
 ```
 root@piholewunbound:/# dig test.jager.net @127.0.0.1 
 ```
@@ -104,6 +103,7 @@ Junte-se à comunidade e vamos construir soluções de rede inovadoras e eficien
 
 Links:
 
+- https://blog.ricardof.dev/configurando-dominio-wildcard-pihole/
 - https://docs.pi-hole.net/guides/dns/unbound/
 - https://www.cherryservers.com/blog/docker-build-command
 - https://unbound.docs.nlnetlabs.nl/en/latest/
