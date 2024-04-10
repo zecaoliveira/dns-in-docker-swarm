@@ -85,11 +85,7 @@ root@piholewunbound:/# dig test.jager.net @127.0.0.1
 ```
 ![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/e6f7a79a-1996-411c-80ec-b3abeb7d46cd)
 
-Aqui eu concluo este tutorial no qual eu pude praticar temas como:
-
-- Alta disponibilidade para servidores: ao usar um cluster Swarm em que eu não preciso me preocupar em qual nó o serviço está funcionando. Após o deploy o cluster assume toda a parte de alta disponibilidade e oferta do serviço / aplicação.
-- Segurança dos volumes: colocando os dados para serem armazenados em volume gerenciado eu garanto a segurança uma vez que somente o usuário root tem acesso a pasta volumes em /var/lib/docker. Outra facilidade é que ao executar o comando de criação de volumes no Docker ele é replicado para todo o cluster automaticamente.
-- Alta disponibilidade de rede: usando a rede do tipo Overlay. Uma vez configurado todo o tráfego é gerenciado pela mesmo, não importando em qual nó está o serviço / aplicação. O ganho de tempo de não ter que anotar IP's é imensurável.
+Aqui eu concluo este tutorial!
 
 ### Observações importantes:
 
@@ -99,7 +95,7 @@ Desenvolva suas habilidades em DevOps e conquiste as melhores oportunidades no m
 
 Junte-se à comunidade e vamos construir soluções de rede inovadoras e eficientes juntos!
 
-### Crédito e Referências:
+### Créditos e Referências:
 
 Links:
 
