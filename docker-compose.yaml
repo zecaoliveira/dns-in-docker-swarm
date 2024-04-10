@@ -1,75 +1,58 @@
-# Command: docker stack deploy --compose-file=docker-compose.yaml dns
-version: '3'
-
-networks:
-  overlay_net:
-    driver: overlay
-    attachable: true
-
+version: "3"
+# Command deploy: docker stack deploy --compose-file=docker-compose.yaml dns
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 services:
   pihole:
-    image: pihole/pihole:latest # remember to change this if you're using rpi
+    #container_name: piholewunbound
+    image: piholewunbound:v3.2
+    hostname: piholewunbound            #hostname for container
     networks:
-      - overlay_net
+      - pihole_net
+      #  ipv4_address: 172.16.0.210 #**Change, use pihole address
+    environment:
+      TZ: 'America/Maceio'     #**Change to your timezone
+      WEBPASSWORD: 'MyP455W0rd'   #**Change this is pihole web password, only used on container creation.
+      PIHOLE_DNS_: '127.0.0.1#5335' # 'pwu_pihole'
     #deploy:
     #  mode: global
     #  placement:
-    #    constraints: [node.platform.os == linux]
+    #   constraints: [node.platform.os == linux]
+    #deploy: 
+    #  mode: replicated
+    #  replicas: 1
+    #  placement:
+    #    constraints: [node.role == manager]
     ports:
+      #- "443:443/tcp"
       - "53:53/tcp"
+#      - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
       - "53:53/udp"
-      - "10085:80/tcp" # Access via http://pihole.khonshu.net:10085/admin/login.php (example).
-      #- "10443:443/tcp"
-    environment:
-      TZ: 'America/Maceio'
-      # Reset Password 
-      # Set the Web Interface password. Password can be entered as an option (e.g: pihole -a -p secretpassword), 
-      # or separately as to not display on the screen (e.g: pihole -a -p).
-      # site: https://docs.pi-hole.net/core/pihole-command/?h=password#password
-      #WEBPASSWORD: 'password'
-      # Source Optional variables Docker - PiHole:
-      # This IP address and port are from Unbound on one of the cluster nodes. It is used by PiHole as the upstream DNS.
-      PIHOLE_DNS_: 172.16.0.221#5053;172.16.0.222#5053;127.0.0.1#5053
-      #DNSSEC: true
-    #dns:
-    #  - 127.0.0.1
-    #  - 1.1.1.1 # Quad9
-    #  - 8.8.8.8 # CloudFlare
-    volumes:
-      - "dns-homelab:/data"
-    #  - './etc-pihole:/etc/pihole' # Oficial PiHole
-    #  - './etc-dnsmasq.d:/etc/dnsmasq.d'
-    #labels:
-    #  - "traefik.enable=true"
-    #  - "traefik.http.routers.pihole.entrypoints=http"
-    #  - "traefik.http.routers.pihole.rule=Host(`pihole.khonshu.net`)"
-    #  - "traefik.http.middlewares.pihole-https-redirect.redirectscheme.scheme=https"
-    #  - "traefik.http.routers.pihole.middlewares=pihole-https-redirect"
-    #  - "traefik.http.routers.pihole-secure.entrypoints=https"
-    #  - "traefik.http.routers.pihole-secure.rule=Host(`pihole.khonshu.net`)"
-    #  - "traefik.http.routers.pihole-secure.tls=true"
-    #  - "traefik.http.routers.pihole-secure.service=pihole"
-    #  - "traefik.http.services.pihole.loadbalancer.server.port=80"
-    #  - "traefik.docker.network=proxy"
-  unbound:
-    image: mvance/unbound:latest
-    volumes:
-        - "dns-homelab:/data"
-    deploy: 
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints: [node.role == manager]
-    ports:
-        - "5053:53/tcp" # expose a different port (5053) so you can use it directly
-        - "5053:53/udp"
-    networks:
-      - overlay_net
-          #ipv4_address: 172.29.0.11 # <-- This IP address and port are from Unbound in one of the . It is used by PiHole as the upstream DNS. (Docker Compose).
+      - "85:80/tcp"
+    #restart: "unless-stopped"
+    volumes: 
+      - 'pwu_data:/data' # Pi-Hole GitHub
+      #- './etc-pihole:/etc/pihole' # Oficial PiHole
+      #- './etc-dnsmasq.d:/etc/dnsmasq.d' # Oficial PiHole
+      #- './unbound:/etc/unbound/unbound.conf.d/'
+    #volumes:
+    #  - 'pihole_data:/data'
+    #volumes:
+    #  - "pihole_data:/etc/pihole"
+    #  - "pihole_data:/etc/dnsmasq.d"
+#    cap_add:
+#      - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
 volumes:
-  dns-homelab:
-    #external: true
-  #etc-dnsmasqd:
-  #  external: true
-  #etc-unbound:
-  #  external: true
+  pwu_data:
+    external: true
+networks:
+  pihole_net:
+    driver: overlay
+    attachable: true
+    #driver: macvlan
+    #driver_opts:
+    #  parent: enp0s18 # ORIGINAL: ens18 #**Change this to your interface
+    #ipam:
+      #config:
+        #- subnet: 172.16.0.0/24     #**Your network subnet
+          #gateway: 172.16.0.1/24       #**Your network gateway
+          #ip_range: 172.16.0.210/32  #**IP for pihole container
