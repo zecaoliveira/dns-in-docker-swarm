@@ -85,7 +85,7 @@ root@piholewunbound:/# dig test.jager.net @127.0.0.1
 ```
 ![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/e6f7a79a-1996-411c-80ec-b3abeb7d46cd)
 
-5 - Teste usando os 3 nós:
+5 - Teste de resolução de nomes para a Internet usando os 3 nós a partir da rede externa:
 
 - Node 01:
 
