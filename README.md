@@ -34,7 +34,7 @@ $ docker volume create pwu_data
 ```
 ![image](https://github.com/zecaoliveira/dns-in-docker-swarm/assets/42525959/3b8b3df0-4c26-46c2-9a5b-6c260c5e7051)
 
-2 - Contrua a sua image Docker: https://github.com/zecaoliveira/dns-in-docker-swarm/blob/main/Dockerfile
+2 - Contrua a sua imagem Docker: https://github.com/zecaoliveira/dns-in-docker-swarm/blob/main/Dockerfile
 
 > Mérito do ótimo vídeo do Rob with Tech: https://www.youtube.com/watch?v=IqsPH6oXy8c&t=16s
 > Repositório: https://github.com/robwithtech/homelab
