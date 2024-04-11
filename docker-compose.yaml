@@ -11,7 +11,7 @@ services:
       #  ipv4_address: 172.16.0.210 #**Change, use pihole address
     environment:
       TZ: 'America/Maceio'     #**Change to your timezone
-      WEBPASSWORD: 'MyP455W0rd'   #**Change this is pihole web password, only used on container creation.
+      WEBPASSWORD: 'mypassword'   #**Change this is pihole web password, only used on container creation.
       PIHOLE_DNS_: '127.0.0.1#5335' # 'pwu_pihole'
     #deploy:
     #  mode: global
