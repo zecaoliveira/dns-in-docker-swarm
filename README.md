@@ -36,7 +36,7 @@ $ docker volume create pwu_data
 
 2 - Contrua a sua imagem Docker: https://github.com/zecaoliveira/dns-in-docker-swarm/blob/main/Dockerfile
 
-> Nota: estou executando estes comandos em um Cluster Docker Swarm com 3 servidores: um controllert e dois nodes!!!
+> Nota: estou executando estes comandos em um Cluster Docker Swarm com 3 servidores: um controller e dois nodes!!!
 > 
 > Mérito do ótimo vídeo do Rob with Tech: https://www.youtube.com/watch?v=IqsPH6oXy8c&t=16s
 >
